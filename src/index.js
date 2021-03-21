@@ -36,7 +36,7 @@ function Square(props) {
     }
   
     render() {
-      const status = `Game started @ ${(new Date()).toLocaleTimeString()} Next player: X`;
+      const status = `Next player: `+ (this.state.xIsNext ? 'X' : 'O');
   
       return (
         <div>

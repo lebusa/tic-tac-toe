@@ -98,9 +98,9 @@ function Square(props) {
           <li key={move}>
             <button onClick={() => {
               this.jumpTo(move);
-              //this.state.jumped = move;
+              document.getElementsByTagName('li')[move].firstChild.style["fontWeight"] = "bold";
               }}>
-            {this.state.jumped ? 'jumped to ' + this.state.jumped + " ": 'did not jump '}{desc}
+            {desc}
             </button>
           </li>
         );

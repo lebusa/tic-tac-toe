@@ -52,6 +52,7 @@ function Square(props) {
         history: [{
           squares: Array(9).fill(null),
         }],
+        locations: [],
         stepNumber: 0,
         xIsNext: true,
       }
@@ -61,6 +62,10 @@ function Square(props) {
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
       const current = history[history.length - 1];
       const squares = current.squares.slice(); 
+      const locs = this.state.locations;
+      const newLoc = determineLocation(i);
+      locs[locs.length] = newLoc;
+      console.log(locs);
       if(determineWinner(squares) || squares[i]) {
         return;
       }
@@ -68,8 +73,9 @@ function Square(props) {
       this.setState({
         history: history.concat([{squares: squares,}]),
         stepNumber: history.length,
+        locations: locs,
         xIsNext: !this.state.xIsNext,
-      }); 
+      });
     }
     
     jumpTo(step) {
@@ -84,8 +90,10 @@ function Square(props) {
       const current = history[this.state.stepNumber];
       const winner = determineWinner(current.squares);
 
+      console.log(this.state.locations[this.state.locations.length - 1])
+
       const moves = history.map((step, move) => {
-        const desc = move ? `Go to #${move}` : `Go to game start`;
+        const desc = move ? `Go to move #${move} (${this.state.locations[move - 1]})` : `Go to game start`;
         return (
           <li key={move} >
             <button onClick={() => this.jumpTo(move)}>
@@ -146,3 +154,17 @@ function determineWinner(squares) {
   return null;
 }
 
+function determineLocation(i) {
+  const locations = [
+    [1,1],
+    [2,1],
+    [3,1],
+    [1,2],
+    [2,2],
+    [3,2],
+    [1,3],
+    [2,3],
+    [3,3],
+  ]
+  return locations[i];
+}

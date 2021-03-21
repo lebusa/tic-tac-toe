@@ -62,10 +62,10 @@ function Square(props) {
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
       const current = history[history.length - 1];
       const squares = current.squares.slice(); 
-      const locs = this.state.locations;
-      const newLoc = determineLocation(i);
-      locs[locs.length] = newLoc;
-      console.log(locs);
+
+      const locs = this.state.locations.slice(0, this.state.stepNumber);
+      locs[locs.length] = determineLocation(i);
+
       if(determineWinner(squares) || squares[i]) {
         return;
       }
@@ -89,8 +89,6 @@ function Square(props) {
       const history = this.state.history;
       const current = history[this.state.stepNumber];
       const winner = determineWinner(current.squares);
-
-      console.log(this.state.locations[this.state.locations.length - 1])
 
       const moves = history.map((step, move) => {
         const desc = move ? `Go to move #${move} (${this.state.locations[move - 1]})` : `Go to game start`;

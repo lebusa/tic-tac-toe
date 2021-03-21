@@ -54,7 +54,7 @@ function Square(props) {
         }],
         locations: [],
         stepNumber: 0,
-        jumped: 0,
+        jumped: false,
         xIsNext: true,
       }
     }
@@ -94,11 +94,12 @@ function Square(props) {
       
       const moves = history.map((step, move) => {
         const desc = move ? `Go to move #${move} (${this.state.locations[move - 1]})` : `Go to game start`;
+        var myStyle = this.state.jumped  === move ? {"fontWeight":"bold"} : {"fontWeight":"normal"};
         return (
-          <li key={move}>
-            <button onClick={() => {
+          <li key={move} style={myStyle}>
+            <button  style={myStyle} onClick={() => {
               this.jumpTo(move);
-              document.getElementsByTagName('li')[move].firstChild.style["fontWeight"] = "bold";
+              this.state.jumped = false;
               }}>
             {desc}
             </button>

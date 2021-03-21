@@ -55,6 +55,7 @@ function Square(props) {
         locations: [],
         stepNumber: 0,
         jumped: false,
+        currentlySelected: false,
         xIsNext: true,
       }
     }
@@ -76,6 +77,7 @@ function Square(props) {
         stepNumber: history.length,
         locations: locs,
         xIsNext: !this.state.xIsNext,
+        currentlySelected: false,
       });
     }
     
@@ -84,6 +86,7 @@ function Square(props) {
         stepNumber: step,
         xIsNext: (step % 2) === 0,
         jumped: step,
+        currentlySelected: true,
       });
     }
 
@@ -94,11 +97,14 @@ function Square(props) {
       
       const moves = history.map((step, move) => {
         const desc = move ? `Go to move #${move} (${this.state.locations[move - 1]})` : `Go to game start`;
-        var myStyle = this.state.jumped  === move ? {"fontWeight":"bold"} : {"fontWeight":"normal"};
+        let myStyle = (this.state.currentlySelected && (this.state.jumped  === move)) ? {"fontWeight":"bold"} : {"fontWeight":"normal"};
+        if ( !this.state.currentlySelected ) myStyle = {"fontWeight":"normal"};
+
         return (
           <li key={move} style={myStyle}>
             <button  style={myStyle} onClick={() => {
               this.jumpTo(move);
+              this.state.currentlySelected = false;
               }}>
             {desc}
             </button>

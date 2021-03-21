@@ -99,7 +99,6 @@ function Square(props) {
           <li key={move} style={myStyle}>
             <button  style={myStyle} onClick={() => {
               this.jumpTo(move);
-              this.state.jumped = false;
               }}>
             {desc}
             </button>

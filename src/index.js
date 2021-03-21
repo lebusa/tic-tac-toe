@@ -54,6 +54,7 @@ function Square(props) {
         }],
         locations: [],
         stepNumber: 0,
+        jumped: 0,
         xIsNext: true,
       }
     }
@@ -82,6 +83,7 @@ function Square(props) {
       this.setState({
         stepNumber: step,
         xIsNext: (step % 2) === 0,
+        jumped: step,
       });
     }
 
@@ -89,13 +91,16 @@ function Square(props) {
       const history = this.state.history;
       const current = history[this.state.stepNumber];
       const winner = determineWinner(current.squares);
-
+      
       const moves = history.map((step, move) => {
         const desc = move ? `Go to move #${move} (${this.state.locations[move - 1]})` : `Go to game start`;
         return (
-          <li key={move} >
-            <button onClick={() => this.jumpTo(move)}>
-              {desc}
+          <li key={move}>
+            <button onClick={() => {
+              this.jumpTo(move);
+              //this.state.jumped = move;
+              }}>
+            {this.state.jumped ? 'jumped to ' + this.state.jumped + " ": 'did not jump '}{desc}
             </button>
           </li>
         );

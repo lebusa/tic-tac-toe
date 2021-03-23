@@ -97,13 +97,12 @@ function Square(props) {
       
       const moves = history.map((step, move) => {
         const desc = move ? `Go to move #${move} (${this.state.locations[move - 1]})` : `Go to game start`;
-        // set style when a move is clicked/selected
+        
+        // enbold a move that is jumped to
         let myStyle = (this.state.currentlySelected && (this.state.jumped  === move)) ? {"fontWeight":"bold"} : {"fontWeight":"normal"};
-        // remove bolding on next click (when no move is selected)
-        if ( !this.state.currentlySelected ) myStyle = {"fontWeight":"normal"};
 
         return (
-          <li key={move} style={myStyle}>
+          <li key={move}>
             <button  style={myStyle} onClick={() => {
               this.jumpTo(move);
               }}>

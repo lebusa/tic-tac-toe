@@ -106,8 +106,6 @@ function Square(props) {
           <li key={move} style={myStyle}>
             <button  style={myStyle} onClick={() => {
               this.jumpTo(move);
-              // remove flag to let normal (not bold) style on next/other buttons
-              this.state.currentlySelected = false;
               }}>
             {desc}
             </button>

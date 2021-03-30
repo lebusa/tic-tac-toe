@@ -1,3 +1,5 @@
+# This is just a React App Repo - all text below was created at startup. Ignore it.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

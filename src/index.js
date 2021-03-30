@@ -65,9 +65,12 @@ function Square(props) {
       const current = history[history.length - 1];
       const squares = current.squares.slice(); 
 
+      // get an array of clicked squares
       const locs = this.state.locations.slice(0, this.state.stepNumber);
+      // set location of currently clicked square
       locs[locs.length] = determineLocation(i);
 
+      // check a winner
       if(determineWinner(squares) || squares[i]) {
         return;
       }
@@ -99,11 +102,11 @@ function Square(props) {
         const desc = move ? `Go to move #${move} (${this.state.locations[move - 1]})` : `Go to game start`;
         
         // enbold a move that is jumped to
-        let myStyle = (this.state.currentlySelected && (this.state.jumped  === move)) ? {"fontWeight":"bold"} : {"fontWeight":"normal"};
+        //let myStyle = (this.state.currentlySelected && (this.state.jumped  === move)) ? {"fontWeight":"bold"} : {"fontWeight":"normal"};
 
         return (
           <li key={move}>
-            <button  style={myStyle} onClick={() => {
+            <button  style={(this.state.currentlySelected && (this.state.jumped  === move)) ? {"fontWeight":"bold"} : {"fontWeight":"normal"}} onClick={() => {
               this.jumpTo(move);
               }}>
             {desc}

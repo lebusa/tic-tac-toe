@@ -118,6 +118,10 @@ function Square(props) {
       } else {
         status = `Next player: `+ (this.state.xIsNext ? 'X' : 'O');
       }
+      if(!winner && moves.length === 10) {
+        status = "No winner"
+      }
+      
 
       return (
         <div className="game">
@@ -131,6 +135,7 @@ function Square(props) {
             <div>{status}</div>
             <ol>{moves}</ol>
           </div>
+          
         </div>
       );
     }

@@ -1,4 +1,4 @@
-# This is just a React App Repo - all text below was created at startup. Ignore it.
+# This is just a React App Repo - all text below was created at startup, you can ignore irrelavant bits.
 
 # Getting Started with Create React App
 
